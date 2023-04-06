@@ -103,3 +103,5 @@ int main()
     std::ofstream file_result("emoji_file.txt");
     file_result << results_table.data();
 }
+
+// https://godbolt.org/z/bEqfr6j38
