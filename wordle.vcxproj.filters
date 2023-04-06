@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="words.txt" />
+    <Text Include="emoji_file.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="wordle.cpp">

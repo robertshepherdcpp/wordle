@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="emoji_file.txt" />
     <Text Include="words.txt" />
   </ItemGroup>
   <ItemGroup>

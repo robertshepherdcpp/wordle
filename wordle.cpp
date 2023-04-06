@@ -1,8 +1,9 @@
-#include<iostream> // std::cout
+﻿#include<iostream> // std::cout
 #include<vector>   // std::vector
 #include<string>   // std::string
 #include<fstream>  // std::ifstream
 #include<random>   // random things
+#include<fstream>  // std::ofstream
 
 auto has(std::string s, char c) -> bool
 {
@@ -13,7 +14,7 @@ auto has(std::string s, char c) -> bool
     return false;
 }
 
-auto compare(std::string maybe, std::string to_compare) -> std::string
+auto compare(std::string maybe, std::string to_compare, std::vector<char>& vec) -> std::string
 {
     std::string result{};
     for (int i = 0; i < to_compare.size() && i < maybe.size(); i++)
@@ -21,13 +22,16 @@ auto compare(std::string maybe, std::string to_compare) -> std::string
         if (maybe[i] == to_compare[i])
         {
             result += "#";
+            vec.push_back('🟩');
         }
         else if (has(to_compare, maybe[i]))
         {
             result += "~";
+            vec.push_back('🟨');
         }
         else
         {
+            vec.push_back('⬛');
             result += "-";
         }
     }
@@ -40,6 +44,7 @@ int main()
     std::string line{};
     std::vector<std::string> vec{};
     std::ifstream myfile("words.txt");
+    std::vector<char> results_table{};
     if (myfile.is_open())
     {
         while (std::getline(myfile, line))
@@ -64,7 +69,7 @@ int main()
     while (number_of_goes < 6 && input != random_word)
     {
         std::cin >> input;
-        std::string s = compare(input, random_word);
+        std::string s = compare(input, random_word, results_table);
         std::cout << "\n\n\n\n\n\n\n\n\n";
         for (auto x : input)
         {
@@ -78,5 +83,17 @@ int main()
         std::cout << "\n\n\n\n\n\n\n\n\n";
         number_of_goes += 1;
     }
-    std::cout << "The answer was: " << random_word;
+    std::cout << "The answer was: " << random_word << "\n";
+
+    for (int i = 0; i < results_table.size(); i++)
+    {
+        std::cout << results_table[i];
+        if (i % 5 == 0)
+        {
+            std::cout << "\n";
+        }
+    }
+
+    std::ofstream file_result("emoji_file.txt");
+    file_result << results_table.data();
 }
