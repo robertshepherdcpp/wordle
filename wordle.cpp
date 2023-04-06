@@ -5,6 +5,8 @@
 #include<random>   // random things
 #include<fstream>  // std::ofstream
 
+#include<locale.h>
+
 auto has(std::string s, char c) -> bool
 {
     for (auto x : s)
@@ -14,24 +16,27 @@ auto has(std::string s, char c) -> bool
     return false;
 }
 
-auto compare(std::string maybe, std::string to_compare, std::vector<char>& vec) -> std::string
+auto compare(std::string maybe, std::string to_compare, std::vector<std::string>& vec) -> std::string
 {
+    const std::string grey_square{ "\xe2\xac\x9b" };
+    const std::string green_square{ "\xf0\x9f\x9f\xa9" };
+    const std::string yellow_square{ "\xf0\x9f\x9f\xa8" };
     std::string result{};
     for (int i = 0; i < to_compare.size() && i < maybe.size(); i++)
     {
         if (maybe[i] == to_compare[i])
         {
             result += "#";
-            vec.push_back('🟩');
+            vec.push_back(green_square);
         }
         else if (has(to_compare, maybe[i]))
         {
             result += "~";
-            vec.push_back('🟨');
+            vec.push_back(yellow_square);
         }
         else
         {
-            vec.push_back('⬛');
+            vec.push_back(grey_square);
             result += "-";
         }
     }
@@ -44,7 +49,7 @@ int main()
     std::string line{};
     std::vector<std::string> vec{};
     std::ifstream myfile("words.txt");
-    std::vector<char> results_table{};
+    std::vector<std::string> results_table{};
     if (myfile.is_open())
     {
         while (std::getline(myfile, line))
@@ -66,6 +71,7 @@ int main()
     // now do the wordle part of it;
 
     int number_of_goes = 0;
+    setlocale(LC_ALL, "en_US.utf8");
     while (number_of_goes < 6 && input != random_word)
     {
         std::cin >> input;
