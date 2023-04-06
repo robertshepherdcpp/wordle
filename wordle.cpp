@@ -62,7 +62,7 @@ int main()
     // get the random number
     std::random_device dev;
     std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 1005); // distribution in range [1, 6]
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0, vec.size()); // distribution in range [1, 6]
     auto random_number = dist6(rng);
 
     std::string random_word = vec[random_number];
