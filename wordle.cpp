@@ -106,3 +106,4 @@ int main()
 
 // https://godbolt.org/z/bEqfr6j38
 // https://wandbox.org/permlink/JZkrwcbsex7C8mNn
+// https://wandbox.org/permlink/zExdwDIdJOffkbC7
