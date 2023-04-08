@@ -108,3 +108,4 @@ int main()
 // https://wandbox.org/permlink/JZkrwcbsex7C8mNn
 // https://wandbox.org/permlink/zExdwDIdJOffkbC7
 // https://wandbox.org/permlink/75fZn0xTt8WkNyyP
+// https://wandbox.org/permlink/E1ZXMk4st0oTLtoW
